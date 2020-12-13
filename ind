@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ytURL </title>
+</head>
+<body>
+    <textarea autofocus id="name" cols="100" rows="12"></textarea>
+    <!--<input type="text" id="name" name="name" required size="200" autofocus="autofocus">-->
+    <button onclick="convert()">Convert</button>
+    <button onclick="Flushfield()"> Flush Field</button>
+    <video id="vi" controls="" autoplay="" name="media" download>
+    </video>
+        <script>
+            function convert() {
+                console.log("convert");
+                var urls = document.getElementById("name").value;
+                var index = urls.lastIndexOf("&rn");
+                console.log(index);
+                var url = urls.substr(0, index);
+                var index = url.lastIndexOf("-");
+                var index2 = url.lastIndexOf("range=");
+                console.log(url.substr(0, index2));
+                var compurl = (url.substr(0, (index2 + 6)) + 0 + url.substr(index, url.length));
+                console.log(compurl);
+                document.getElementById("vi").innerHTML = "<source src=\"" + compurl + "\" type=\"audio/webm\">";
+                document.getElementById("vi").load();
+                document.getElementById("vi").play();
+            }
+            function Flushfield() {
+                console.log("flush");
+                var url = document.getElementById("name");
+                url.value = "";
+
+            }
+ </script>
+</body>
+</html>
